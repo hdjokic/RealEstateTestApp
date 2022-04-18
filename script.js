@@ -1,6 +1,6 @@
 let input = document.querySelector('input');
 let container = document.querySelector('.container');
-let fruits = ['Apple', 'Orange', 'Kiwi', 'Grapes', 'Mango'];
+let homes  = ['Small', 'Big', 'Family', 'Single', 'Huge'];
 input.addEventListener('keyup', (e) =>{
     let btnSubmit = document.querySelector('button');
     if(btnSubmit){
