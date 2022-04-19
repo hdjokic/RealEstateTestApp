@@ -18,6 +18,7 @@ function readFormData() {
     formData["productCode"] = document.getElementById("productCode").value;
     formData["product"] = document.getElementById("product").value;
     formData["qty"] = document.getElementById("qty").value;
+    formData["qty"] = document.getElementById("qty").value;
     formData["perPrice"] = document.getElementById("perPrice").value;
     return formData;
 }
@@ -33,9 +34,11 @@ function insertNewRecord(data) {
     cell3 = newRow.insertCell(2);
 		cell3.innerHTML = data.qty;
     cell4 = newRow.insertCell(3);
-		cell4.innerHTML = data.perPrice;
-    cell4 = newRow.insertCell(4);
-        cell4.innerHTML = `<button onClick="onEdit(this)">Edit</button> <button onClick="onDelete(this)">Delete</button>`;
+		cell4.innerHTML = data.qty;
+    cell5 = newRow.insertCell(4);
+                cell5.innerHTML = data.perPrice;
+    cell6 = newRow.insertCell(5);
+        cell6.innerHTML = `<button onClick="onEdit(this)">Edit</button> <button onClick="onDelete(this)">Delete</button>`;
 }
 
 //Edit the data
