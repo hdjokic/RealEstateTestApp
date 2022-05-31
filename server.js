@@ -15,7 +15,8 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html')
 })
 app.post('/index', (req, res) => {
-    console.log('helooooooooo')
+    console.log('helooooooooo');
+    console.log(req.body);
 })
 //app.set('views', __dirname + '/views');
 //app.set('layout','layouts/layout');
@@ -40,30 +41,41 @@ var myobj = { name: "Company Inc", address: "Highway 37" };
 
 app.use('/', indexRouter);
 
-indexRouter.post('/add', (req, res) => {   
-	mongoose.query(`INSERT INTO property (House_Address, Sqft, Num_of_Bedrooms, Num_of_Bathroom, price) VALUES ('${req.body.house_address}', '${req.body.Sqft}','${req.body.Num_of_Bedrooms}','${req.body.Num_of_Bathroom}','${req.body.price}')` , (err, result) => {
-	console.log(err, result)
+app.engine("html", expressLayouts);
+app.set("views","views");
+app.set("view engine", "html");
 
-	res.redirect('/insert')
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
+app.get("/*", (req,res) => {
+  res.sendFile(path.join(__dirname, "views","index.html"))
+})
+
+// indexRouter.post('/views/add', (req, res) => {   
+// 	mongoose.query(`INSERT INTO property (House_Address, Sqft, Num_of_Bedrooms, Num_of_Bathroom, price) VALUES ('${req.body.house_address}', '${req.body.Sqft}','${req.body.Num_of_Bedrooms}','${req.body.Num_of_Bathroom}','${req.body.price}')` , (err, result) => {
+// 	console.log(err, result)
+
+// 	res.redirect('/views/add')
 	
-		})
-	})
+// 		})
+// 	})
 
-    // indexRouter.post('/delete', (req,res) => {
-    //     mongoose.query(`DELETE FROM property WHERE addressID = '${req.body.addressID}'`, (err,result) => { 
-    //         console.log(err, result) 
-    //         res.redirect('/delete')
+//     indexRouter.post('/views/delete', (req,res) => {
+//         mongoose.query(`DELETE FROM property WHERE addressID = '${req.body.addressID}'`, (err,result) => { 
+//             console.log(err, result) 
+//             res.redirect('views/delete')
             
-    //         })
+//             })
         
-    // })
+//     })
     
-    // indexRouter.post('/update', (req,res) => {
-    //         mongoose.query(`UPDATE property SET propertyType = '${req.body.propertytype}', price = '${req.body.price}', size='${req.body.size}', num_bedroom = '${req.body.num_bedroom}', num_bathroom = '${req.body.num_bathroom}' WHERE address = '${req.body.address}'`, (err,result) => {
-    //             console.log(err, result) 
-    //             res.redirect('/update')
-    //         })
-    //     })
+//     indexRouter.post('views/update', (req,res) => {
+//             mongoose.query(`UPDATE property SET propertyType = '${req.body.propertytype}', price = '${req.body.price}', size='${req.body.size}', num_bedroom = '${req.body.num_bedroom}', num_bathroom = '${req.body.num_bathroom}' WHERE address = '${req.body.address}'`, (err,result) => {
+//                 console.log(err, result) 
+//                 res.redirect('/views/update')
+//             })
+//         })
     
 
 app.listen(process.env.PORT || 3000);
